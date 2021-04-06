@@ -28,7 +28,7 @@ int main()
     while (true)
     {
         menu();
-        cout<<'Select: ';
+        cout<<"Select: ";
         cin>>select;
         cout<<endl;
 
@@ -46,11 +46,11 @@ int main()
             SAccount();
         }
         else if (select == 5){
-            cout<<'ProgramExit';
+            cout<<"ProgramExit";
             break;
         }
         else{
-            cout<<'Wrong Selection';
+            cout<<"Wrong Selection";
         }
         
     }
@@ -59,23 +59,23 @@ int main()
 }
 
 void menu(){
-    cout<<'-----Menu------'<<endl;
-    cout<<'1. Make Account'<<endl;
-    cout<<'2. DepositMoney'<<endl;
-    cout<<'3. WithdrawMoney'<<endl;
-    cout<<'4. ShowAllAccount'<<endl;
-    cout<<'5. ProgramExit'<<endl;
+    cout<<"-----Menu------"<<endl;
+    cout<<"1. Make Account"<<endl;
+    cout<<"2. DepositMoney"<<endl;
+    cout<<"3. WithdrawMoney"<<endl;
+    cout<<"4. ShowAllAccount"<<endl;
+    cout<<"5. ProgramExit"<<endl;
 }
 void MAccount(){
     int ID;
     int Money;
     char name[20];
-    cout<<'[Make Account]';
-    cout<<'Account ID: ';
+    cout<<"[Make Account]"<<endl;
+    cout<<"Account ID: ";
     cin>>ID;
-    cout<<'Name: ';
+    cout<<"Name: ";
     cin>>name;
-    cout<<'Balance: ';
+    cout<<"Balance: ";
     cin>>Money;
     Acc[Accnum].AID = ID;
     strcpy(Acc[Accnum].Name, name);
@@ -85,41 +85,50 @@ void MAccount(){
 void IMoney(){
     int ID;
     int Money;
-    cout<<'[DepositMoney]';
-    cout<<'Account ID: ';
+    cout<<"[DepositMoney]"<<endl;
+    cout<<"Account ID: ";
     cin>>ID;
-    for(int i = 0; i <= Accnum; i++){
+    for(int i = 0; i < Accnum; i++){
         if (Acc[i].AID == ID){
-            cout<<'depositMoney: ';
+            cout<<"depositMoney: ";
             cin>>Money;
-            cout<<'Deposit Complete';
+            Acc[i].money += Money;
+            cout<<"Deposit Complete"<<endl;
             return;
         }
 
     }
-    cout<<'Wrong Account.';
+    cout<<"Wrong Account.";
 }
 void OMoney(){
     int ID;
     int Money;
-    cout<<'[WithdrawMoney]';
-    cout<<'Account ID: ';
+    cout<<"[WithdrawMoney]"<<endl;
+    cout<<"Account ID: ";
     cin>>ID;
-    for(int i = 0; i <= Accnum; i++){
+    for(int i = 0; i < Accnum; i++){
         if (Acc[i].AID == ID){
-            cout<<'WithdrawMoney: ';
+            cout<<"WithdrawMoney: ";
             cin>>Money;
-            cout<<'Withdraw Complete';
+            if (Acc[i].money < Money){
+                cout<<"You don't have enough money";
+            }
+            else{
+                Acc[i].money -= Money;
+                cout<<"Withdraw Complete"<<endl;
+            }
+
+            
             return;
         }
     }
-    cout<<'Wrong Account';
+    cout<<"Wrong Account";
 }
 
 void SAccount(){
-    for(int i = 0; i <= Accnum; i++){
-        cout<<'Account ID: '<<Acc[i].AID;
-        cout<<'Name: '<<Acc[i].Name;
-        cout<<'Balance: '<<Acc[i].money<<endl;
+    for(int i = 0; i < Accnum; i++){
+        cout<<"Account ID: "<<Acc[i].AID<<endl;
+        cout<<"Name: "<<Acc[i].Name<<endl;
+        cout<<"Balance: "<<Acc[i].money<<endl;
     }
 }
