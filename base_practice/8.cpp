@@ -41,7 +41,7 @@ int main()
             }
             else if (select == 6)
             {
-                cout << "Program Exi";
+                cout << "Program Exit";
                 return 0;
             }
             else
